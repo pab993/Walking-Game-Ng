@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: "Raleway";
+    src: url(../public/assets/fonts/Raleway-Regular.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Raleway";
+    src: url(../public/assets/fonts/Raleway-Bold.ttf) format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Raleway";
+    src: url(../public/assets/fonts/Raleway-Italic.ttf) format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+body {
+    font-family: 'Raleway', sans-serif !important;
+  }
+
+.btn-purple{
+    background-color: #7749F8 !important;
+    color: white !important;
+    border: 2px solid #7749F8 !important;
+}
+
+.btn-purple:hover {
+    background-color: #653ECC !important;
+}

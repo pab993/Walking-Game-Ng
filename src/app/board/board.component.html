@@ -1,0 +1,15 @@
+<ng-template #noPlayers>
+    <div class="text-center">
+        <h2>No hay personajes ahora mismo.</h2>
+        <button class="btn btn-purple fw-bold" (click)="openModalPlayerForm()">Crear nuevo personaje</button>
+    </div>
+</ng-template>
+
+<div *ngIf="currentGame?.currentPlayers > 0; else noPlayers" class="table-game-container">
+    <app-character-list></app-character-list>
+    <div *ngFor="let row of rows" class="table-row">
+        <div *ngFor="let col of cols" class="table-cell">
+        
+        </div>
+    </div>
+</div>

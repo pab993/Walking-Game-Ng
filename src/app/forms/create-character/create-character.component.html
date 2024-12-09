@@ -1,0 +1,16 @@
+<form [formGroup]="createCharacterForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="form-group col-md mb-4">
+          <input id="username" formControlName="username" type="text" placeholder="Nombre de tu personaje" class="form-control mb-1">
+          <div *ngIf="createCharacterForm.get('username')?.errors?.['required'] && createCharacterForm.get('username')?.touched" class="alert alert-danger">
+            El nombre no puede estar vacío.
+          </div>
+          <div *ngIf="(createCharacterForm.get('username')?.errors?.['minLenght'] || createCharacterForm.get('username')?.errors?.['maxLength']) && createCharacterForm.get('username')?.touched" class="alert alert-danger fs-6">
+            El nombre debe contener entre 3 y 26 caracteres.
+          </div>
+        </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-purple mb-4 fw-bold fs-5" [disabled]="isSubmitting">Crear nuevo personaje</button>
+    </div>
+</form>

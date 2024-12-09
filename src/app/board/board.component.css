@@ -1,0 +1,38 @@
+.table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .table-row {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+  }
+  
+  .table-cell {
+    flex: 1;
+    background-color: #f0f0f0;
+    background-image: url("../../../public/assets/background-cell.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+  }
+
+  .table-cell:hover {
+    box-shadow: 0 0 0 4px #7749F8;
+    transform: scale(1.03);
+  }
+
+  .table-row + .table-row {
+    margin-top: 8px;
+  }
