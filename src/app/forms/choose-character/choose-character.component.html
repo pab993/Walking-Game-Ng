@@ -1,0 +1,32 @@
+<form [formGroup]="chooseCharacterForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <!--<div class="form-group col-md mb-4">
+            <label *ngFor="let character of characters" class="form-check-label d-block">
+            <input 
+                id="{{ character }}" 
+                formControlName="character" 
+                type="radio" 
+                [value]="character" 
+                class="form-check-input me-2">
+            {{ character.username }}
+            </label>
+        </div>-->
+        <div class="form-group col-md-4 mb-4" *ngFor="let character of characters">
+            <div class="card character-card" [ngClass]="{'selected': chooseCharacterForm.value.character.username === character.username}">
+                <input 
+                id="{{ character.username }}" 
+                formControlName="character" 
+                type="radio" 
+                [value]="character.username" 
+                class="form-check-input d-none">
+                <label for="{{ character.username }}" class="card-bt d-flex flex-column align-items-center">
+                    <img src="" alt="{{ character.username }}" class="card-img-top" />
+                    <div class="card-text d-flex flex-column align-items-center"><span>Player</span><span class="card-username fw-bold">{{ character.username }}</span></div>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-purple mb-4 fw-bold fs-5" [disabled]="isSubmitting">Elegir</button>
+    </div>
+</form>

@@ -15,6 +15,7 @@ import { CreateCharacterComponent } from '../forms/create-character/create-chara
 export class BoardComponent {
 
   currentGame: any;
+  currentCharacter: any = null;
   rows: number[] = [];
   cols: number[] = [];
 
