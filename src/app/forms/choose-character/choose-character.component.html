@@ -17,7 +17,7 @@
                 id="{{ character.username }}" 
                 formControlName="character" 
                 type="radio" 
-                [value]="character.username" 
+                [value]="character" 
                 class="form-check-input d-none">
                 <label for="{{ character.username }}" class="card-bt d-flex flex-column align-items-center">
                     <img src="" alt="{{ character.username }}" class="card-img-top" />
@@ -26,7 +26,10 @@
             </div>
         </div>
     </div>
-    <div class="text-center">
-      <button class="btn btn-purple mb-4 fw-bold fs-5" [disabled]="isSubmitting">Elegir</button>
+    <div *ngIf="chooseCharacterForm.get('character')?.errors?.['required'] && chooseCharacterForm.get('character')?.touched" class="alert alert-danger fs-6">
+        Debes seleccionar un personaje.
+    </div>
+    <div class="text-end">
+      <button class="btn btn-purple mb-4 fw-bold fs-6">Elegir</button>
     </div>
 </form>

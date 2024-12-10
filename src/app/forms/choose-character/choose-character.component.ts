@@ -2,6 +2,7 @@ import { WalkgameService } from './../../services/walkgame.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { GenericModalService } from '../../services/generic-modal.service';
 
 @Component({
   selector: 'app-choose-character',
@@ -14,9 +15,8 @@ export class ChooseCharacterComponent {
 
   chooseCharacterForm: FormGroup;
   characters: any[] = [];
-  isSubmitting: boolean = false;
 
-  constructor(private fb: FormBuilder, private walkgameService: WalkgameService) {
+  constructor(private fb: FormBuilder, private walkgameService: WalkgameService, private genericModalService: GenericModalService) {
     this.chooseCharacterForm = fb.group({
       character: ['', Validators.required]
     });
@@ -29,6 +29,13 @@ export class ChooseCharacterComponent {
 
   }
 
-  onSubmit(): void{}
+  onSubmit(): void{
+    this.chooseCharacterForm.markAllAsTouched();
+    if (!this.chooseCharacterForm.valid) {
+      return;
+    }
+    this.walkgameService.setPlayerData(this.chooseCharacterForm.value);
+    this.genericModalService.closeModal();
+  }
 
 }

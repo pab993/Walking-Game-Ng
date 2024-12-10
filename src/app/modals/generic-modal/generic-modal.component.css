@@ -1,0 +1,5 @@
+.generic-modal .btn-close {
+   position: absolute;
+   right: 20px; 
+   font-size: 10px;
+}

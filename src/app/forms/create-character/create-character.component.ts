@@ -49,6 +49,7 @@ export class CreateCharacterComponent {
   private handleSuccess(): void {
     this.genericModalService.closeModal();
     this.isSubmitting = false;
+    this.createCharacterForm.reset();
   }
   
   private handleError(message: string): void {

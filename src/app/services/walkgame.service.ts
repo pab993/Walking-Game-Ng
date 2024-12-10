@@ -11,6 +11,9 @@ export class WalkgameService {
   private gameDataSubject = new BehaviorSubject<any>(null);
   gameData$ = this.gameDataSubject.asObservable();
 
+  private playerSubject = new BehaviorSubject<any>(null);
+  playerData$ = this.playerSubject.asObservable();
+
   constructor(private http: HttpClient) { }
 
   createNewGame(data: any): Observable<any>{
@@ -47,6 +50,10 @@ export class WalkgameService {
 
   setGameData(gameData: any): void{
     this.gameDataSubject.next(gameData);
+  }
+
+  setPlayerData(playerData: any): void{
+    this.playerSubject.next(playerData);
   }
 
 }

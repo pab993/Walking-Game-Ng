@@ -1,16 +1,15 @@
-<div class="d-flex justify-content-center gap-3 text-center">
-    <div *ngIf="characterList.length > 0; else noPlayers">
-        <!--<div *ngFor="let player of characterList">
-            <div>
-                {{player.username}}
-            </div>
-        </div>-->
+<div class="d-flex justify-content-center text-center">
+    <div *ngIf="characterList.length > 0; else noPlayers" class="d-flex justify-content-center gap-3 text-center">
+
         <button class="btn btn-purple fw-bold mb-4" (click)="chooseCharacter()">Elige un personaje</button>
+        <div *ngIf="characterList.length < 6">
+            <button class="btn btn-purple fw-bold mb-4" (click)="openModalPlayerForm()">Crear nuevo personaje</button>
+        </div>
     </div>
     <ng-template #noPlayers>
-        <h2>No hay personajes ahora mismo.</h2>
+        <div class="d-flex flex-column">
+            <h2 class="mb-4">No hay personajes ahora mismo.</h2>
+            <button class="btn btn-purple fw-bold mb-4" (click)="openModalPlayerForm()">Crear nuevo personaje</button>
+        </div>
     </ng-template>
-    <div *ngIf="characterList.length < 6">
-        <button class="btn btn-purple fw-bold mb-4" (click)="openModalPlayerForm()">Crear nuevo personaje</button>
-    </div>
 </div>

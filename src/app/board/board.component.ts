@@ -24,7 +24,12 @@ export class BoardComponent {
       next: (gameData) => {
         this.currentGame = gameData;
         this.generateTable();
-        console.log(this.currentGame);
+      }
+    });
+
+    this.walkgameService.playerData$.subscribe({
+      next: (playerData) => {
+        this.currentCharacter = playerData;
       }
     });
   }
