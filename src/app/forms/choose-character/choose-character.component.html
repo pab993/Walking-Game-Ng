@@ -1,17 +1,6 @@
 <form [formGroup]="chooseCharacterForm" (ngSubmit)="onSubmit()">
     <div class="row">
-        <!--<div class="form-group col-md mb-4">
-            <label *ngFor="let character of characters" class="form-check-label d-block">
-            <input 
-                id="{{ character }}" 
-                formControlName="character" 
-                type="radio" 
-                [value]="character" 
-                class="form-check-input me-2">
-            {{ character.username }}
-            </label>
-        </div>-->
-        <div class="form-group col-md-4 mb-4" *ngFor="let character of characters">
+        <div class="form-group col-sm-4 mb-4" *ngFor="let character of characters">
             <div class="card character-card" [ngClass]="{'selected': chooseCharacterForm.value.character.username === character.username}">
                 <input 
                 id="{{ character.username }}" 

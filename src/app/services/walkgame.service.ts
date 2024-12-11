@@ -40,6 +40,29 @@ export class WalkgameService {
     );
   }
 
+  movePlayerGame(data: any, username: string): Observable<any>{
+    return this.http.patch<any>(environment.apiUrl + "/player/" + username, data).pipe(
+      tap((response) => {
+        const currentGameData = this.gameDataSubject.getValue();
+  
+        if (currentGameData && currentGameData.players) {
+          const playerToUpdate = currentGameData.players.find((player: any) => player.username === username);
+  
+          if (playerToUpdate) {
+            playerToUpdate.position = response.position;
+  
+            playerToUpdate.positions.push({
+              row: response.position.row,
+              column: response.position.column,
+            });
+          }
+
+          this.gameDataSubject.next({ ...currentGameData });
+        }
+      })
+    );
+  }
+
   createNewPlayer(data: any): Observable<any>{
     return this.http.post<any>(environment.apiUrl + "/player", data);
   }

@@ -1,10 +1,30 @@
 <div class="table-game-container">
 
     <app-character-list></app-character-list>
+    <div *ngIf="currentCharacter?.selected">
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-img-box">
+                        <button type="button" class="btn-close" aria-label="Close" (click)="onCloseSelected()"></button>
+                        <img class="card-img-top" src="" alt="Jugador seleccionado">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Player <span class="fw-bold">{{currentCharacter.character.username}}</span></h5>
+                        <p class="card-text fs-6">{{getPositions()}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div *ngIf="currentGame?.currentPlayers > 0 && currentCharacter">
         <div *ngFor="let row of rows" class="table-row">
-            <div *ngFor="let col of cols" class="table-cell">
-            
+            <div *ngFor="let col of cols" class="table-cell" [attr.data-row]="row" 
+            [attr.data-col]="col"  [ngClass]="{
+                'table-path': isCellMatchingPosition(row, col),
+                'current-pos': currentPlayerPosition(row, col)
+             }" (click)="moveOrSelect($event)">
+                <span class="text-white pe-none">{{getRowLetter(row)}}-{{col}}</span>
             </div>
         </div>
     </div>

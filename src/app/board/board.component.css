@@ -36,3 +36,57 @@
   .table-row + .table-row {
     margin-top: 8px;
   }
+
+  .table-path{
+    position: relative;
+    box-shadow: 0 0 0 4px #FF00B8;
+  }
+
+  .current-pos:before {
+    content: "P1";
+    top: 0;
+    right: 6px;
+    position: absolute;
+    color: #7749F8;
+  }
+
+  .card-img-box{
+    background: linear-gradient(to bottom, #000000, #4b004b);
+    border-radius: 5px 5px 0 0;
+    min-height: 80px;
+  }
+
+  .card-img-box .btn-close{
+    filter: invert(1);
+    position: absolute;
+    right: 6px;
+    top: 6px;
+  }
+
+  .card-body{
+    padding: 16px;
+    font-size: 12px;
+    width: 100%;
+    background-color: #343333;
+    border-radius: 0 0 7px 7px;
+    color: #FFFDFD;
+  }
+
+  @media (max-width: 768px) {
+    .table-row {
+      gap: 2px;
+    }
+
+    .table-row + .table-row {
+      margin-top: 2px;
+    }
+
+    .table-cell:hover {
+      box-shadow: 0 0 0 2px #7749F8;
+      transform: scale(1.01);
+    }
+
+    .table-path{
+      box-shadow: 0 0 0 2px #FF00B8;
+    }
+  }
