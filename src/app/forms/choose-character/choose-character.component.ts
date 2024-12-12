@@ -21,12 +21,14 @@ export class ChooseCharacterComponent {
       character: ['', Validators.required]
     });
 
+  }
+
+  ngOnInit(): void {
     this.walkgameService.gameData$.subscribe({
       next: (gameData) => {
         this.characters = gameData.players;
       }
     });
-
   }
 
   onSubmit(): void{

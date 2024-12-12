@@ -22,7 +22,9 @@ export class BoardComponent {
   rows: number[] = [];
   cols: number[] = [];
 
-  constructor(private walkgameService: WalkgameService, private genericModalService: GenericModalService, private errorModalService: ErrorModalService){
+  constructor(private walkgameService: WalkgameService, private genericModalService: GenericModalService, private errorModalService: ErrorModalService){}
+
+  ngOnInit(): void {
     this.walkgameService.gameData$.subscribe({
       next: (gameData) => {
         this.currentGame = gameData;
