@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ComponentRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { GenericModalService } from '../../services/generic-modal.service';
 import { Modal } from 'bootstrap';
 import { Subscription } from 'rxjs';
@@ -14,9 +14,11 @@ import { CommonModule } from '@angular/common';
 export class GenericModalComponent implements OnInit, OnDestroy{
   private modal!: Modal;
   private subscriptions = new Subscription();
-  component: any;
-
+  private componentRef!: ComponentRef<any>; 
   message: string = 'Error';
+
+  @ViewChild('dynamicContainer', { read: ViewContainerRef, static: true })
+  dynamicContainer!: ViewContainerRef;
 
   constructor(private genericModalService: GenericModalService) {}
 
@@ -24,13 +26,19 @@ export class GenericModalComponent implements OnInit, OnDestroy{
     const modalElement = document.getElementById('genericModal');
     if (modalElement) {
       this.modal = new Modal(modalElement);
+
+      modalElement.addEventListener('hidden.bs.modal', () => {
+        this.resetComponentState();
+      });
     }
 
     this.subscriptions.add(
-      this.genericModalService.component$.subscribe((component) => {
-        this.component = component;
+      this.genericModalService.component$.subscribe((componentRef: ComponentRef<any>) => {
+        this.componentRef = componentRef;
       })
     );
+
+    this.genericModalService.setViewContainerRef(this.dynamicContainer);
 
     this.subscriptions.add(
       this.genericModalService.openModal$.subscribe((message: string) => {
@@ -38,8 +46,11 @@ export class GenericModalComponent implements OnInit, OnDestroy{
         this.modal?.show();
       })
     );
+
     this.subscriptions.add(
-      this.genericModalService.closeModal$.subscribe(() => this.modal?.hide())
+      this.genericModalService.closeModal$.subscribe(() => {
+        this.modal?.hide();
+      })
     );
   }
 
@@ -49,5 +60,11 @@ export class GenericModalComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  private resetComponentState(): void {
+    if (this.componentRef?.instance && typeof this.componentRef.instance.reset === 'function') {
+      this.componentRef.instance.reset();
+    }
   }
 }

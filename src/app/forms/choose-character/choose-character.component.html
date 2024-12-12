@@ -9,7 +9,7 @@
                 [value]="character" 
                 class="form-check-input d-none">
                 <label for="{{ character.username }}" class="card-bt d-flex flex-column align-items-center">
-                    <img src="" alt="{{ character.username }}" class="card-img-top" />
+                    <img src="{{ character.userAvatar }}" alt="{{ character.username }}" class="card-img-top" />
                     <div class="card-text d-flex flex-column align-items-center"><span>Player</span><span class="card-username fw-bold">{{ character.username }}</span></div>
                 </label>
             </div>
@@ -18,7 +18,7 @@
     <div *ngIf="chooseCharacterForm.get('character')?.errors?.['required'] && chooseCharacterForm.get('character')?.touched" class="alert alert-danger fs-6">
         Debes seleccionar un personaje.
     </div>
-    <div class="text-end">
+    <div class="text-center text-sm-end">
       <button class="btn btn-purple mb-4 fw-bold fs-6">Elegir</button>
     </div>
 </form>

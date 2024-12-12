@@ -1,5 +1,5 @@
 <div class="generic-modal modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <h5 class="modal-title" id="genericModalLabel">{{message}}</h5>
@@ -7,7 +7,8 @@
             </div>
             
             <div class="modal-body">
-                <ng-container *ngComponentOutlet="component"></ng-container>
+                <!--<ng-container *ngComponentOutlet="component"></ng-container>-->
+                <ng-template #dynamicContainer></ng-template>
             </div>
             <!--<div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cerrar</button>

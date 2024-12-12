@@ -1,0 +1,17 @@
+.cc-character-card{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cc-character-card:hover{
+    transform: scale(1.05);
+}
+
+input[type="radio"]:checked + label {
+    box-shadow: 0 0 0 4px #7749F8;
+}
+
+.cc-card-bt{
+    background: #434343;
+    border-radius: 6px;
+    cursor: pointer;
+}

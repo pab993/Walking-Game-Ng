@@ -20,6 +20,7 @@ export class WalkgameService {
     return this.http.post<any>(environment.apiUrl + "/game", data).pipe(
       tap(() => {
         localStorage.setItem("gameSizes", JSON.stringify(data));
+        localStorage.removeItem("playersAvatar");
       })
     );
   }
@@ -34,6 +35,20 @@ export class WalkgameService {
             width: gameSizes?.width,
             height: gameSizes?.height
           }
+        }
+        const playersAvatar = localStorage.getItem("playersAvatar")
+        ? JSON.parse(localStorage.getItem("playersAvatar") as string)
+        : {};
+
+        if (data.players && Array.isArray(data.players)) {
+          data.players = data.players.map((player: any) => {
+            const avatarUrl = playersAvatar[player.username];
+
+            return {
+              ...player,
+              userAvatar: avatarUrl || ''
+            };
+          });
         }
         this.gameDataSubject.next(data);
       })
@@ -63,8 +78,16 @@ export class WalkgameService {
     );
   }
 
-  createNewPlayer(data: any): Observable<any>{
-    return this.http.post<any>(environment.apiUrl + "/player", data);
+  createNewPlayer(data: any): Observable<any> {
+    return this.http.post<any>(environment.apiUrl + "/player", data).pipe(
+      tap((responseData) => {
+        const playersAvatar = localStorage.getItem("playersAvatar") ? JSON.parse(localStorage.getItem("playersAvatar") as string) : {};
+  
+        playersAvatar[data.username] = data.useravatar;
+  
+        localStorage.setItem("playersAvatar", JSON.stringify(playersAvatar));
+      })
+    );
   }
 
   getGameData(): any{

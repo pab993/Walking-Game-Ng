@@ -8,9 +8,33 @@
           <div *ngIf="(createCharacterForm.get('username')?.errors?.['minLenght'] || createCharacterForm.get('username')?.errors?.['maxLength']) && createCharacterForm.get('username')?.touched" class="alert alert-danger fs-6">
             El nombre debe contener entre 3 y 26 caracteres.
           </div>
+          <div *ngIf="usernameInUse" class="alert alert-danger fs-6">
+            Nombre de jugador en uso. Por favor, elige otro.
+          </div>
         </div>
     </div>
-    <div class="text-center">
+    <fieldset>
+      <legend class="fs-5">Selecciona un avatar</legend>
+      <div class="row">
+        <div class="form-group col-sm-6 mb-4" *ngFor="let useravatar of useravatars; let i = index">
+          <div class="card cc-character-card" [ngClass]="{'selected': createCharacterForm.value.useravatar === useravatar}">
+            <input 
+            id="useravatar-{{i}}" 
+            formControlName="useravatar" 
+            type="radio" 
+            [value]="useravatar" 
+            class="form-check-input d-none">
+            <label for="useravatar-{{i}}" class="cc-card-bt d-flex flex-column align-items-center">
+                <img src="{{useravatar}}" alt="Avatar {{ i }}" class="card-img-top" />
+            </label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="createCharacterForm.get('useravatar')?.errors?.['required'] && createCharacterForm.get('useravatar')?.touched" class="alert alert-danger fs-6">
+        Selecciona la imagen del avatar de tu personaje.
+      </div>
+    </fieldset>
+    <div class="text-center text-sm-end">
       <button class="btn btn-purple mb-4 fw-bold fs-6" [disabled]="isSubmitting">Crear nuevo personaje</button>
     </div>
 </form>

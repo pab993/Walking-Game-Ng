@@ -17,12 +17,25 @@ export class CreateCharacterComponent {
 
   createCharacterForm: FormGroup;
   isSubmitting: boolean = false;
+  usernameInUse: boolean = false;
+  useravatars: string[] = [
+    'assets/player_avatars/player1.svg',
+    'assets/player_avatars/player2.svg',
+    'assets/player_avatars/player3.svg',
+    'assets/player_avatars/player4.svg'
+  ];
 
   constructor(private fb: FormBuilder, private walkgameService: WalkgameService, private errorModalService: ErrorModalService, private genericModalService: GenericModalService) {
     this.createCharacterForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(26)]],
+      useravatar: ['', [Validators.required]]
     });
+  }
 
+  ngOnInit(): void {
+    this.createCharacterForm.get('username')?.valueChanges.subscribe(() => {
+      this.usernameInUse = false;
+    });
   }
 
   onSubmit(): void {
@@ -33,10 +46,16 @@ export class CreateCharacterComponent {
     }
   
     this.isSubmitting = true;
+    this.usernameInUse = false;
   
     this.walkgameService.createNewPlayer(this.createCharacterForm.value).pipe(
       switchMap(() => this.walkgameService.getCurrentGame()),
       catchError((err) => {
+        if (err.status === 500 && err.error.includes('UsernameInUseException')) {
+          this.usernameInUse = true;
+          this.isSubmitting = false;
+          return EMPTY;
+        }
         this.handleError("Algo ha ido mal durante la creación del usuario");
         return EMPTY;
       })
@@ -56,4 +75,9 @@ export class CreateCharacterComponent {
     this.isSubmitting = false;
     this.errorModalService.openModal(message);
   }
+
+  reset(): void {
+    this.createCharacterForm.reset();
+  }
+
 }

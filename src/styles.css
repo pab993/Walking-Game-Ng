@@ -34,3 +34,9 @@ body {
 .btn-purple:hover {
     background-color: #653ECC !important;
 }
+
+@media (max-width: 576px) {
+    .fs-mv{
+        font-size: 10px !important;
+    }
+}

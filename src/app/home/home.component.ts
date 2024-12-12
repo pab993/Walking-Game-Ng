@@ -57,8 +57,8 @@ export class HomeComponent implements OnDestroy {
       this.isSubmitting = true;
 
       const dataForm = {
-        width: this.createGameForm.value.gamerows,
-        height: this.createGameForm.value.gamecols
+        width: this.createGameForm.value.gamecols,
+        height: this.createGameForm.value.gamerows
       };
 
       const submitSubscription = this.walkgameService.createNewGame(dataForm).pipe(

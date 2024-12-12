@@ -3,10 +3,6 @@
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: #f9f9f9;
   }
   
@@ -20,10 +16,6 @@
   }
   
   .card-bt {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
     border-radius: 5px 7px;
     background: linear-gradient(
       to bottom,
@@ -38,8 +30,6 @@
   }
 
   .card-img-top {
-    width: 100%;
-    height: 75%;
     object-fit: cover;
     border-radius: 10px;
   }
@@ -69,4 +59,16 @@
   input[type="radio"]:not(:checked) + label {
     background-color: #f9f9f9;
     border-color: #ddd;
+  }
+
+
+  @media (max-width: 576px) {
+    /*.cc-wmax{
+      max-width: 230px;
+    }*/
+
+    .card-text{
+      height: 60px;
+      justify-content: center
+    }
   }
