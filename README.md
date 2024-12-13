@@ -18,9 +18,9 @@ Y para comprobar el instalador de paquetes: _npm -v_
 
 **Paso 3**. Nos clonamos el repositorio en alguna ruta de nuestro ordenador, por ejemplo en el escritorio. Y usando la consola de comandos de windows o usando nuestro IDE favorito (Por ejemplo, Visual Studio), apuntamos a su ruta con el comando _"cd"_. Por ejemplo: _**cd "C:\Users\usuario\Desktop\Walking-Game-Ng"**_
 
-**Paso 3**. Si todo ha ido correctamente y una vez que estemos apuntando a esa ruta, ejecutamos el comando _**npm install**_ esto hará que se descargue cualquier dependencia que requiera el proyecto. A parte de los paquete que trae por defecto.
+**Paso 4**. Si todo ha ido correctamente y una vez que estemos apuntando a esa ruta, ejecutamos el comando _**npm install**_ esto hará que se descargue cualquier dependencia que requiera el proyecto. A parte de los paquete que trae por defecto.
 
-**Paso 4**. Por último, cuando acabe la instalación usamos el comando _**ng serve**_ y se iniciará nuestra aplicación, desplegandose en la url http://localhost:4200/
+**Paso 5**. Por último, cuando acabe la instalación usamos el comando _**ng serve**_ y se iniciará nuestra aplicación, desplegandose en la url http://localhost:4200/
 
 
 ## Nota:
